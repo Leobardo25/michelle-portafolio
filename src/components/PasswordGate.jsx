@@ -42,7 +42,7 @@ export default function PasswordGate({ onSuccess }) {
                     </svg>
                 </div>
 
-                <h1 className="font-display text-3xl md:text-4xl font-bold mb-4 gradient-text">
+                <h1 className="font-display text-3xl md:text-4xl font-bold mb-4 animate-text-wave">
                     Contenido Exclusivo
                 </h1>
 
