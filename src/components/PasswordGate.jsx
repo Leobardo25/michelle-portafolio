@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const ACCESS_CODE = 'camila2024'
+const ACCESS_CODE = 'CAMILA2026'
 
 export default function PasswordGate({ onSuccess }) {
     const [code, setCode] = useState('')

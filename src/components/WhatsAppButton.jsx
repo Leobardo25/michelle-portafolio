@@ -9,7 +9,7 @@ export default function WhatsAppButton() {
     return (
         <button
             onClick={handleOpenChat}
-            className="fixed bottom-6 right-3 md:right-6 z-50 bg-brand-red text-white p-2 md:p-3 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 flex items-center justify-center animate-gentle-pulse cursor-pointer border-none"
+            className="fixed bottom-6 right-3 md:right-6 z-50 bg-brand-red text-white p-3 md:p-3 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 flex items-center justify-center animate-gentle-pulse cursor-pointer border-none"
             aria-label="Abrir WhatsApp"
         >
             <svg className="w-6 h-6 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 24 24">

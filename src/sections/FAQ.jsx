@@ -3,23 +3,23 @@ import { useState } from 'react'
 const faqs = [
     {
         question: "¿Cómo realizo el pago?",
-        answer: "Aceptamos SINPE Móvil y transferencias bancarias directas. Al hacer clic en 'Comprar' te llevaré a mi WhatsApp para darte los datos. Es rápido y seguro."
+        answer: "Amor acepto SINPE Móvil y transferencias bancarias directas. Al hacer clic en 'Comprar' te llevaré a mi WhatsApp para darte los datos. Es rápido y seguro."
     },
     {
         question: "¿Es discreto?",
-        answer: "Totalmente. En tu estado de cuenta no aparecerá nada relacionado con contenido para adultos. Tu privacidad es mi prioridad."
+        answer: "Bebe totalmente. En tu estado de cuenta no aparecerá nada relacionado con contenido para adultos. Tu privacidad es mi prioridad."
     },
     {
         question: "¿En cuánto tiempo recibo el acceso?",
-        answer: "Inmediatamente después de confirmar tu comprobante de pago, te envío el material o el acceso al paquete que elegiste."
+        answer: "Amor inmediatamente después de confirmar tu comprobante de pago, te envíare el material o el acceso al paquete que elegiste."
     },
     {
         question: "¿El contenido es real?",
-        answer: "Sí, todo el contenido es creado por mí y recibirás exactamente lo que ves en las descripciones del paquete."
+        answer: "Sí amor, todo el contenido es creado por mí y recibirás exactamente lo que ves en las descripciones del paquete."
     },
     {
         question: "¿Haces citas personales?",
-        answer: "Sí, pero por motivos de seguridad es requisito haber comprado contenido previamente y demostrar fidelidad para acceder a encuentros presenciales."
+        answer: "Amor sí, pero por motivos de SEGURIDAD es requisito haber comprado contenido previamente y demostrar fidelidad para acceder a encuentros presenciales."
     },
     {
         question: "¿De dónde eres?",

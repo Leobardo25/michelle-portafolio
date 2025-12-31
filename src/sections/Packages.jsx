@@ -6,8 +6,8 @@ const packages = [
         oldPrice: '₡10,000',
         description: (
             <>
-                Video completo (9 min)<br />
-                Tocándome mi panochita rosadita hasta
+                Un videito completo de 9 min<br />
+                Tocándome mi panochita rosadita hasta que me veas
                 regarme todita (squirt💦).<br />
                 ¿Podrás aguantar hasta el final? 🔥<br />
                 Sin censura + Número de WhatsApp privado.
@@ -29,9 +29,9 @@ const packages = [
         oldPrice: '₡8,000',
         description: (
             <>
-                Este paquete tiene:<br />
-                30 fotos muy explícitas y ricas<br />
-                30 videos cortos donde me veras hacer de todo<br />
+                Amor este paquete tiene:<br />
+                30 fotos muy explícitas y muy ricas<br />
+                30 videos cortos donde me veras hacer de todo😈<br />
                 (estilo TikTok).
             </>
         ),
@@ -51,7 +51,7 @@ const packages = [
         oldPrice: '₡15,000',
         description: (
             <>
-                La experiencia completa:<br />
+                Bebe experiencia completa:<br />
                 Video MUY explícito donde me mastubo mi panochita y el ano hasta regarme me veras en mi punto mas vulnerable🔥<br />
                 + 30 Fotos<br />
                 + 30 Videos

@@ -3,11 +3,114 @@ import { getGalleryImages } from '../services/firebaseStorage'
 
 export default function Gallery() {
     const [freeItems, setFreeItems] = useState([])
-    const [premiumItems, setPremiumItems] = useState([])
     const [selectedItem, setSelectedItem] = useState(null)
     const [loading, setLoading] = useState(true)
     const [activeTab, setActiveTab] = useState('free')
-    const [visibleItems, setVisibleItems] = useState(20) // Show 20 items initially
+    const [visibleItems, setVisibleItems] = useState(20)
+
+    // Static Premium Photos
+    const premiumVideos = [
+        {
+            id: 'p1',
+            url: '/photos/premium/p1.png',
+            type: 'image',
+            title: 'Buenos Días Bebé ☀️',
+            description: 'Empezando el día de la manera más rica... ¿Me das los buenos días? 🤭',
+            price: 1000,
+            originalPrice: 2000,
+            isExclusive: true
+        },
+        {
+            id: 'p2',
+            url: '/photos/premium/p2.png',
+            type: 'image',
+            title: 'Volví Mis Amores 🫦',
+            description: 'Los extrañé tanto... aquí les traigo un regalito de regreso. 🫣',
+            price: 1000,
+            originalPrice: 2000,
+            isExclusive: true
+        },
+        {
+            id: 'p3',
+            url: '/photos/premium/p3.png',
+            type: 'image',
+            title: 'Vamos a Jugar 🎮',
+            description: 'Tengo un juego nuevo y quiero que seas mi jugador 1. 🔥',
+            price: 1000,
+            originalPrice: 2000,
+            isExclusive: true
+        },
+        {
+            id: 'p4',
+            url: '/photos/premium/p4.png',
+            type: 'image',
+            title: 'Lo Prometido... 👅',
+            description: 'Cumpliendo mis deudas de la manera más deliciosa. 💦',
+            price: 1000,
+            originalPrice: 2000,
+            isExclusive: true
+        },
+        {
+            id: 'p5',
+            url: '/photos/premium/p5.png',
+            type: 'image',
+            title: 'Chat Privado 💬',
+            description: 'Un adelanto de lo que pasa cuando me escribes al privado... 😈',
+            price: 1000,
+            originalPrice: 2000,
+            isExclusive: true
+        },
+        {
+            id: 'p6',
+            url: '/photos/premium/p6.png',
+            type: 'image',
+            title: '¿Qué Haces Amor? 👀',
+            description: 'Yo aquí pensando en ti... y tocándome un poquito. 🙈',
+            price: 1000,
+            originalPrice: 2000,
+            isExclusive: true
+        },
+        {
+            id: 'p7',
+            url: '/photos/premium/p7.png',
+            type: 'image',
+            title: 'Pensando en Ti ❤️',
+            description: 'Esta pose es solo para tus ojos. ¿Te gusta? ✨',
+            price: 1000,
+            originalPrice: 2000,
+            isExclusive: true
+        },
+        {
+            id: 'p8',
+            url: '/photos/premium/p8.png',
+            type: 'image',
+            title: 'Quiero Hacerlo Ahorita 🫶🏼',
+            description: 'No aguanto más las ganas... necesito sentirte ya. 🔥',
+            price: 1000,
+            originalPrice: 2000,
+            isExclusive: true
+        },
+        {
+            id: 'p9',
+            url: '/photos/premium/p9.png',
+            type: 'image',
+            title: 'Toda Para Ti 😋',
+            description: 'Quiero que me la chupes toda... no dejes ni una gota. 🤤',
+            price: 1000,
+            originalPrice: 2000,
+            isExclusive: true
+        },
+        {
+            id: 'p10',
+            url: '/photos/premium/p10.png',
+            type: 'image',
+            title: 'Tu Reina Regresó 👑',
+            description: 'Y volví más caliente que nunca. ¿Estás listo? 💕',
+            price: 1000,
+            originalPrice: 2000,
+            isExclusive: true
+        }
+    ]
 
     const handleLoadMore = () => {
         setVisibleItems(prev => prev + 20)
@@ -17,26 +120,19 @@ export default function Gallery() {
         async function loadImages() {
             try {
                 setLoading(true)
-
-                // Load free images (no blur)
+                // Load free images from Firebase
                 const freeImages = await getGalleryImages('gallery')
                 setFreeItems(freeImages.map(img => ({ ...img, isExclusive: false })))
-
-                // Load premium images (with blur)
-                const premiumImages = await getGalleryImages('gallery-premium')
-                setPremiumItems(premiumImages.map(img => ({ ...img, isExclusive: true })))
-
             } catch (err) {
                 console.error('Error loading gallery:', err)
             } finally {
                 setLoading(false)
             }
         }
-
         loadImages()
     }, [])
 
-    const currentItems = activeTab === 'free' ? freeItems : premiumItems
+    const currentItems = activeTab === 'free' ? freeItems : premiumVideos
 
     // Lightbox Logic
     const handleNext = (e) => {
@@ -65,7 +161,14 @@ export default function Gallery() {
         }
         window.addEventListener('keydown', handleKeyDown)
         return () => window.removeEventListener('keydown', handleKeyDown)
-    }, [selectedItem, currentItems]) // Dependencies for proper state access
+    }, [selectedItem, currentItems])
+
+    const handleBuy = (e, item) => {
+        e?.stopPropagation()
+        const message = `Hola Camila, quiero comprar la foto "${item.title}" por ₡${item.price}. ¿Cómo pago?`
+        const url = `https://wa.me/50660288198?text=${encodeURIComponent(message)}`
+        window.open(url, '_blank')
+    }
 
     return (
         <section id="gallery" className="section-padding relative bg-dark-bg">
@@ -80,7 +183,7 @@ export default function Gallery() {
                         Mi <span className="text-brand-red">Contenido</span>
                     </h2>
                     <p className="text-gray-400 max-w-2xl mx-auto">
-                        Explora mi contenido gratuito o mira la seccion premium para comprar los videos o fotos donde podras verme completa.
+                        Explora mi contenido gratuito o mira la sección premium para comprar fotos exclusivas sin censura.
                     </p>
                 </div>
 
@@ -104,10 +207,10 @@ export default function Gallery() {
                             }`}
                     >
                         <span className="absolute -top-4 -right-2 bg-brand-red text-white text-[10px] font-bold px-2 py-0.5 rounded-full animate-bounce shadow-glow-red z-10">
-                            🔞 EXPLÍCITO
+                            🔞 FOTOS VIP
                         </span>
                         <svg className="w-5 h-5 group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-                        Premium ({premiumItems.length})
+                        Premium ({premiumVideos.length})
                     </button>
                 </div>
 
@@ -140,7 +243,7 @@ export default function Gallery() {
                     <>
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
                             {currentItems.slice(0, visibleItems).map((item) => (
-                                <GalleryItem key={item.id} item={item} onClick={() => setSelectedItem(item)} />
+                                <GalleryItem key={item.id} item={item} onClick={() => setSelectedItem(item)} onBuy={handleBuy} />
                             ))}
                         </div>
 
@@ -162,7 +265,7 @@ export default function Gallery() {
             {/* Lightbox Modal - Full Screen Z-100 */}
             {selectedItem && (
                 <div
-                    className="fixed inset-0 z-[100] flex items-center justify-center bg-black"
+                    className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-xl"
                     onClick={() => setSelectedItem(null)}
                 >
                     {/* Navigation Buttons */}
@@ -189,50 +292,49 @@ export default function Gallery() {
                         </svg>
                     </button>
 
-                    <div className="relative w-full h-full flex items-center justify-center p-4 md:p-10" onClick={e => e.stopPropagation()}>
-                        {selectedItem.url ? (
-                            selectedItem.type === 'video' ? (
-                                <video
-                                    src={selectedItem.url}
-                                    controls
-                                    autoPlay
-                                    controlsList="nodownload"
-                                    disablePictureInPicture
-                                    onContextMenu={(e) => e.preventDefault()}
-                                    className={`max-h-full max-w-full rounded-md shadow-2xl protected-media no-drag ${selectedItem.isExclusive ? 'blur-censored' : ''}`}
-                                />
-                            ) : (
+                    <div className="relative w-full h-[85vh] flex flex-col items-center justify-center p-4 md:p-10" onClick={e => e.stopPropagation()}>
+                        {/* Content Container */}
+                        <div className="relative flex flex-col items-center justify-center max-w-4xl w-full h-full">
+                            {selectedItem.url ? (
                                 <img
                                     src={selectedItem.url}
                                     alt=""
                                     draggable="false"
                                     onContextMenu={(e) => e.preventDefault()}
-                                    className={`protected-media no-drag max-h-full max-w-full object-contain rounded-md shadow-2xl ${selectedItem.isExclusive ? 'blur-censored' : ''}`}
+                                    className={`protected-media no-drag max-h-[60vh] md:max-h-[70vh] w-auto object-contain rounded-xl shadow-2xl`}
                                 />
-                            )
-                        ) : (
-                            <div className="aspect-[3/4] max-h-[80vh] rounded-2xl bg-gradient-to-br from-primary-purple to-accent-pink/50 opacity-20"></div>
-                        )}
+                            ) : (
+                                <div className="aspect-[3/4] max-h-[80vh] rounded-2xl bg-gradient-to-br from-primary-purple to-accent-pink/50 opacity-20"></div>
+                            )}
 
-                        {selectedItem.isExclusive && (
-                            <div className="absolute inset-x-0 bottom-10 text-center z-[110]">
-                                <div className="inline-block glass px-8 py-6 rounded-2xl border border-accent-gold/30 bg-black/80">
-                                    <div className="flex items-center justify-center gap-2 mb-4">
-                                        <svg className="w-6 h-6 text-brand-red" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                                        </svg>
-                                        <span className="text-brand-red font-bold text-lg tracking-widest">VIP ONLY</span>
+                            {/* Premium Overlay Info - MOBILE OPTIMIZED */}
+                            {selectedItem.isExclusive && (
+                                <div className="absolute inset-x-0 bottom-0 top-0 flex flex-col items-center justify-center z-[110] p-4 text-center">
+                                    <div className="glass px-6 py-8 rounded-3xl border border-brand-red/30 bg-black/80 max-w-sm w-full mx-auto relative overflow-hidden group">
+                                        {/* Shine effect */}
+                                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent skew-x-12 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000"></div>
+
+                                        <h3 className="text-xl md:text-2xl font-bold text-white mb-2">{selectedItem.title}</h3>
+                                        <p className="text-brand-silver text-sm mb-6">{selectedItem.description}</p>
+
+                                        <div className="flex items-center justify-center gap-3 mb-6">
+                                            <span className="text-2xl font-bold text-brand-red">₡{selectedItem.price}</span>
+                                            {selectedItem.originalPrice && (
+                                                <span className="text-sm text-gray-500 line-through">₡{selectedItem.originalPrice}</span>
+                                            )}
+                                        </div>
+
+                                        <button
+                                            onClick={(e) => handleBuy(e, selectedItem)}
+                                            className="btn-primary w-full flex items-center justify-center gap-2 text-sm py-4 animate-pulse"
+                                        >
+                                            <span>COMPRAR AHORA</span>
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                                        </button>
                                     </div>
-                                    <a
-                                        href="#packages"
-                                        onClick={(e) => { e.preventDefault(); setSelectedItem(null); document.querySelector('#packages')?.scrollIntoView({ behavior: 'smooth' }) }}
-                                        className="btn-primary inline-block px-8"
-                                    >
-                                        Desbloquear Acceso
-                                    </a>
                                 </div>
-                            </div>
-                        )}
+                            )}
+                        </div>
                     </div>
                 </div>
             )}
@@ -240,7 +342,7 @@ export default function Gallery() {
     )
 }
 
-function GalleryItem({ item, onClick }) {
+function GalleryItem({ item, onClick, onBuy }) {
     const [isVisible, setIsVisible] = useState(false)
     const [ref, setRef] = useState(null)
 
@@ -262,34 +364,59 @@ function GalleryItem({ item, onClick }) {
     return (
         <div
             ref={setRef}
-            className={`relative aspect-[3/4] bg-brand-gray overflow-hidden group cursor-pointer border border-white/5 hover:border-brand-red transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+            className={`group flex flex-col bg-brand-darker rounded-xl overflow-hidden border border-white/5 hover:border-brand-red transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
             onClick={onClick}
         >
-            {/* Image */}
-            {item.url ? (
-                <img
-                    src={item.url}
-                    alt=""
-                    draggable="false"
-                    onContextMenu={(e) => e.preventDefault()}
-                    className={`protected-media no-drag absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out ${item.isExclusive
-                        ? 'blur-md grayscale'
-                        : isVisible ? 'grayscale-0' : 'grayscale'
-                        } ${!item.isExclusive && 'group-hover:scale-105'}`}
-                    loading="lazy"
-                />
-            ) : (
-                <div className="absolute inset-0 bg-brand-gray flex items-center justify-center">
-                    <span className="text-3xl opacity-20">📷</span>
-                </div>
-            )}
+            {/* Image Container */}
+            <div className="relative aspect-[3/4] overflow-hidden cursor-pointer">
+                {item.url ? (
+                    <img
+                        src={item.url}
+                        alt=""
+                        draggable="false"
+                        onContextMenu={(e) => e.preventDefault()}
+                        className={`protected-media no-drag w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110`}
+                        loading="lazy"
+                    />
+                ) : (
+                    <div className="w-full h-full bg-brand-gray flex items-center justify-center">
+                        <span className="text-3xl opacity-20">📷</span>
+                    </div>
+                )}
 
-            {/* Premium badge */}
-            {item.isExclusive && (
-                <div className="absolute top-2 right-2 bg-black/80 border border-brand-red/50 px-2 py-1 text-[10px] font-bold text-brand-red uppercase tracking-widest">
-                    VIP
+                {/* Premium Badge */}
+                {item.isExclusive && (
+                    <div className="absolute top-2 right-2 bg-brand-red text-white text-[10px] font-bold px-2 py-1 rounded shadow-lg z-10">
+                        VIP
+                    </div>
+                )}
+            </div>
+
+            {/* Info Card (Grid Footer) */}
+            <div className="p-4 flex flex-col gap-2 bg-white/5">
+                <div className="flex justify-between items-start">
+                    <h3 className="font-bold text-white text-sm line-clamp-1">{item.title}</h3>
+                    {item.isExclusive && (
+                        <span className="text-brand-red font-bold text-sm">₡{item.isExclusive ? 1000 : item.price}</span>
+                    )}
                 </div>
-            )}
+                {item.description && (
+                    <p className="text-xs text-gray-400 line-clamp-2">{item.description}</p>
+                )}
+
+                {item.isExclusive && (
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onBuy(e, item)
+                        }}
+                        className="mt-2 w-full py-2 bg-brand-red/10 border border-brand-red/50 text-brand-red text-xs font-bold rounded hover:bg-brand-red hover:text-white transition-colors flex items-center justify-center gap-1"
+                    >
+                        <span>COMPRAR</span>
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                    </button>
+                )}
+            </div>
         </div>
     )
 }

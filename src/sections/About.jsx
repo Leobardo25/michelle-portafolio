@@ -38,7 +38,7 @@ export default function About() {
                     <p className="text-brand-silver text-lg mb-8 font-light leading-relaxed">
                         Bienvenido a mi espacio más íntimo.
                         Aquí no hay filtros ni censura, solo yo,
-                        en mi versión más auténtica y pervertida lugar donde las fantasías
+                        en mi versión más divertida y pervertida lugar donde las fantasías
                         se encuentran con la realidad.
                     </p>
 
@@ -53,9 +53,16 @@ export default function About() {
                         </div>
                     </div>
 
-                    <button className="text-brand-red font-bold uppercase tracking-widest hover:text-white transition-colors border-b border-brand-red pb-1">
+                    <a
+                        href="#gallery"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            document.querySelector('#gallery')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        className="inline-block text-brand-red font-bold uppercase tracking-widest hover:text-white transition-colors border-b border-brand-red pb-1 cursor-pointer"
+                    >
                         Conóceme mejor
-                    </button>
+                    </a>
                 </div>
             </div>
         </section>

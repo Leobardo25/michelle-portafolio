@@ -11,6 +11,7 @@ export default {
                 brand: {
                     red: '#E11D48', // Primary Action (Rose 600)
                     dark: '#000000', // Pure Black
+                    darker: '#0a0a0a', // Rich Black (Cards)
                     gray: '#18181b', // Zinc 900 (Secondary BG)
                     silver: '#e2e8f0', // Slate 200 (Text)
                     muted: '#71717a', // Zinc 500 (Muted Text)
