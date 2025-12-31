@@ -14,15 +14,11 @@ import FAQ from './sections/FAQ'
 import WhatsAppButton from './components/WhatsAppButton'
 
 function App() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    const [isAuthenticated, setIsAuthenticated] = useState(true) // TEMP: Disabled password gate
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        // Check if already authenticated in session
-        const auth = sessionStorage.getItem('camila_auth')
-        if (auth === 'true') {
-            setIsAuthenticated(true)
-        }
+        // Password gate temporarily disabled by default true state
         setIsLoading(false)
     }, [])
 
