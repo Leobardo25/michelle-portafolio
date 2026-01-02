@@ -23,7 +23,7 @@ const faqs = [
     },
     {
         question: "¿De dónde eres?",
-        answer: "Soy de Costa Rica 🇨🇷. Estoy dispuesta a atenderte y hacerte pasar un momento inolvidable."
+        answer: "Soy de Costa Rica . Estoy dispuesta a atenderte y hacerte pasar un momento inolvidable."
     }
 ]
 

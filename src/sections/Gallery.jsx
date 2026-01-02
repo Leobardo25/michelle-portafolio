@@ -3,13 +3,14 @@ import { getGalleryImages } from '../services/firebaseStorage'
 
 export default function Gallery() {
     const [freeItems, setFreeItems] = useState([])
+    const [premiumItems, setPremiumItems] = useState([])
     const [selectedItem, setSelectedItem] = useState(null)
     const [loading, setLoading] = useState(true)
     const [activeTab, setActiveTab] = useState('free')
     const [visibleItems, setVisibleItems] = useState(20)
 
-    // Static Premium Photos
-    const premiumVideos = [
+    // Premium Photos Metadata - URLs will be loaded from Firebase Storage
+    const premiumPhotosMetadata = [
         {
             id: 'p1',
             url: '/photos/premium/p1.png',
@@ -120,11 +121,41 @@ export default function Gallery() {
         async function loadImages() {
             try {
                 setLoading(true)
+                
                 // Load free images from Firebase
                 const freeImages = await getGalleryImages('gallery')
                 setFreeItems(freeImages.map(img => ({ ...img, isExclusive: false })))
+                
+                // Load premium photos from Firebase Storage
+                const premiumPhotos = await getGalleryImages('fotos-premium')
+                
+                // Merge Firebase URLs with metadata
+                const premiumWithMetadata = premiumPhotosMetadata.map(meta => {
+                    // Find matching photo (p1.png, p2.png, etc.)
+                    // Use exact match to avoid p1 matching with p10, p11, etc.
+                    const firebasePhoto = premiumPhotos.find(p => {
+                        const fileName = p.name.toLowerCase()
+                        const searchId = meta.id.toLowerCase()
+                        // Match exact filename: p1.png, p2.jpg, etc.
+                        return fileName === `${searchId}.png` || 
+                               fileName === `${searchId}.jpg` ||
+                               fileName === `${searchId}.webp` ||
+                               fileName.startsWith(`${searchId}.`) ||
+                               fileName === searchId
+                    })
+                    
+                    return {
+                        ...meta,
+                        url: firebasePhoto?.url || meta.url, // Fallback to local if not found
+                        type: 'image'
+                    }
+                })
+                
+                setPremiumItems(premiumWithMetadata)
             } catch (err) {
                 console.error('Error loading gallery:', err)
+                // Fallback to metadata if Firebase fails
+                setPremiumItems(premiumPhotosMetadata)
             } finally {
                 setLoading(false)
             }
@@ -132,7 +163,7 @@ export default function Gallery() {
         loadImages()
     }, [])
 
-    const currentItems = activeTab === 'free' ? freeItems : premiumVideos
+    const currentItems = activeTab === 'free' ? freeItems : premiumItems
 
     // Lightbox Logic
     const handleNext = (e) => {
@@ -210,7 +241,7 @@ export default function Gallery() {
                             🔞 FOTOS VIP
                         </span>
                         <svg className="w-5 h-5 group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-                        Premium ({premiumVideos.length})
+                        Premium ({premiumItems.length})
                     </button>
                 </div>
 
@@ -354,7 +385,10 @@ function GalleryItem({ item, onClick, onBuy }) {
                 setIsVisible(true)
                 observer.disconnect()
             }
-        }, { threshold: 0.1 })
+        }, { 
+            threshold: 0.01,
+            rootMargin: '50px' // Start loading 50px before entering viewport
+        })
 
         observer.observe(ref)
 
@@ -371,12 +405,13 @@ function GalleryItem({ item, onClick, onBuy }) {
             <div className="relative aspect-[3/4] overflow-hidden cursor-pointer">
                 {item.url ? (
                     <img
-                        src={item.url}
+                        src={isVisible ? item.url : undefined}
                         alt=""
                         draggable="false"
                         onContextMenu={(e) => e.preventDefault()}
                         className={`protected-media no-drag w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110`}
                         loading="lazy"
+                        decoding="async"
                     />
                 ) : (
                     <div className="w-full h-full bg-brand-gray flex items-center justify-center">

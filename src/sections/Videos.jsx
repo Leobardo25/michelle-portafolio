@@ -1,37 +1,42 @@
 import { useState, useEffect, useRef } from 'react'
 import { getGalleryImages } from '../services/firebaseStorage'
 
-const staticPremiumVideos = [
+// Videos premium metadata - URLs will be loaded from Firebase Storage
+const premiumVideosMetadata = [
     {
         id: 'premium1',
-        url: '/videos/premium/premium1.mp4',
-        title: 'Travesura en la Ducha',
-        description: 'Un momento íntimo donde el agua recorre cada parte de mi cuerpo. Te encantará ver cómo termina.',
+        firebasePath: 'videos-premium/premium1.mp4',
+        posterPath: 'videos-premium/thumbnails/premium1.jpg', // Optional: add thumbnails later
+        title: 'Culiada bien rica',
+        description: 'Un momento íntimo donde me cojen bien rico y me encanta. Te encantará ver cómo termina conmigo.',
         price: '₡5,000',
-        whatsappMessage: 'Hola, quiero comprar el video "Travesura en la Ducha" ❤️',
+        whatsappMessage: 'Hola, quiero comprar el video "Culiada bien rica" ❤️',
         isExclusive: true
     },
     {
         id: 'premium2',
-        url: '/videos/premium/premium2.mp4',
-        title: 'Jugando a Solas',
+        firebasePath: 'videos-premium/premium2.mp4',
+        posterPath: 'videos-premium/thumbnails/premium2.jpg',
+        title: 'Monjita pervertida para ti',
         description: 'Cuando estoy aburrida y sola en casa, pasan cosas... Descubre mi lado más travieso.',
         price: '₡5,000',
-        whatsappMessage: 'Hola, quiero comprar el video "Jugando a Solas" ❤️',
+        whatsappMessage: 'Hola, quiero comprar el video "Monjita pervertida para ti" ❤️',
         isExclusive: true
     },
     {
         id: 'premium3',
-        url: '/videos/premium/premium3.mp4',
+        firebasePath: 'videos-premium/premium3.mp4',
+        posterPath: 'videos-premium/thumbnails/premium3.jpg',
         title: 'Sin Ropa es Mejor',
-        description: 'Me quito todo para ti. Un video explícito sin censura donde no dejo nada a la imaginación.',
+        description: 'Video anal donde me riego mucho y disfruto cada momento. Un video explícito sin censura donde no dejo nada a la imaginación.',
         price: '₡7,000',
-        whatsappMessage: 'Hola, quiero comprar el video "Sin Ropa es Mejor" ❤️',
+        whatsappMessage: 'Hola, quiero comprar el video "Anal" ❤️',
         isExclusive: true
     },
     {
         id: 'premium4',
-        url: '/videos/premium/premium4.mp4',
+        firebasePath: 'videos-premium/premium4.mp4',
+        posterPath: 'videos-premium/thumbnails/premium4.jpg',
         title: 'Final Inesperado',
         description: 'Este video tiene un final que te dejará con la boca abierta. Atrévete a verlo completo.',
         price: '₡7,000',
@@ -42,6 +47,7 @@ const staticPremiumVideos = [
 
 export default function Videos() {
     const [freeVideos, setFreeVideos] = useState([])
+    const [premiumVideos, setPremiumVideos] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [activeTab, setActiveTab] = useState('premium')
@@ -50,7 +56,7 @@ export default function Videos() {
     const [isLocked, setIsLocked] = useState(false)
     const videoRef = useRef(null)
 
-    const currentVideos = activeTab === 'free' ? freeVideos : staticPremiumVideos
+    const currentVideos = activeTab === 'free' ? freeVideos : premiumVideos
 
     const handleNext = (e) => {
         e?.stopPropagation()
@@ -86,11 +92,54 @@ export default function Videos() {
             try {
                 setLoading(true)
                 setError(null)
+                
+                // Load free videos from Firebase
                 const free = await getGalleryImages('videos-free')
                 setFreeVideos(free.map(v => ({ ...v, isExclusive: false })))
+                
+                // Load premium videos from Firebase Storage
+                const premium = await getGalleryImages('videos-premium')
+                
+                // Load preview thumbnails from Firebase Storage
+                const previews = await getGalleryImages('videos-preview').catch(() => [])
+                
+                // Merge Firebase URLs with metadata
+                const premiumWithMetadata = premiumVideosMetadata.map(meta => {
+                    // Find matching video (premium1.mp4, premium2.mp4, etc.)
+                    // Use exact match to avoid premium1 matching with premium10, premium11, etc.
+                    const firebaseVideo = premium.find(v => {
+                        const fileName = v.name.toLowerCase()
+                        const searchId = meta.id.toLowerCase()
+                        // Match exact filename: premium1.mp4, premium2.mp4, etc.
+                        return fileName === `${searchId}.mp4` || 
+                               fileName === `${searchId}.webm` ||
+                               fileName.startsWith(`${searchId}.`) ||
+                               fileName === searchId
+                    })
+                    
+                    // Find matching preview/thumbnail
+                    const previewImage = previews.find(p => {
+                        const fileName = p.name.toLowerCase()
+                        const searchId = meta.id.toLowerCase()
+                        // Match exact filename for thumbnails
+                        return fileName === `${searchId}.jpg` || 
+                               fileName === `${searchId}.png` ||
+                               fileName === `${searchId}.webp` ||
+                               fileName.startsWith(`${searchId}.`)
+                    })
+                    
+                    return {
+                        ...meta,
+                        url: firebaseVideo?.url || null,
+                        poster: previewImage?.url || null
+                    }
+                })
+                
+                setPremiumVideos(premiumWithMetadata)
             } catch (err) {
                 console.error('Error loading videos:', err)
-                // Silent fail for free videos if folder empty or error, logic continues with premium static
+                // Fallback to metadata without URLs if Firebase fails
+                setPremiumVideos(premiumVideosMetadata)
             } finally {
                 setLoading(false)
             }
@@ -151,7 +200,7 @@ export default function Videos() {
                                 🔞 EXPLÍCITO
                             </span>
                             <svg className="w-5 h-5 group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-                            Premium ({staticPremiumVideos.length})
+                            Premium ({premiumVideos.length})
                         </button>
                     </div>
                 </div>
@@ -172,15 +221,24 @@ export default function Videos() {
                                 className="group relative bg-brand-gray aspect-[3/4] overflow-hidden border border-white/5 hover:border-brand-red transition-colors duration-300 rounded-xl cursor-pointer"
                                 onClick={() => { setSelectedVideo(video); setIsLocked(false); }}
                             >
+                                {/* Video with poster - NO autoplay on hover to save bandwidth */}
                                 <video
                                     src={video.url}
+                                    poster={video.poster || undefined}
                                     className={`w-full h-full object-cover transition-all duration-500 protected-media no-drag ${video.isExclusive ? 'opacity-80' : 'opacity-80 group-hover:opacity-100'}`}
                                     muted
                                     loop
-                                    onMouseOver={e => e.target.play().catch(() => { })}
-                                    onMouseOut={e => { e.target.pause(); e.target.currentTime = 0; }}
-                                    playsInline // Important for mobile preview
+                                    preload="metadata"
+                                    playsInline
                                 />
+                                {/* Play button overlay */}
+                                <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-colors">
+                                    <div className="w-16 h-16 rounded-full bg-brand-red/80 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                        <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z"/>
+                                        </svg>
+                                    </div>
+                                </div>
                                 {video.isExclusive && (
                                     <>
                                         <div className="absolute top-2 right-2 bg-brand-red text-white text-xs font-bold px-2 py-1 uppercase tracking-widest pointer-events-none rounded-sm">
