@@ -306,9 +306,12 @@ export default function Videos() {
                                 className={`w-full h-full md:w-auto md:h-auto md:max-h-[85vh] object-contain transition-all duration-700 ${isLocked ? 'blur-md opacity-40 scale-105' : ''}`}
                                 autoPlay
                                 controls={!isLocked}
+                                controlsList="nodownload nofullscreen noremoteplayback"
+                                disablePictureInPicture
+                                onContextMenu={(e) => e.preventDefault()}
                                 onEnded={handleVideoEnded}
-                                loop={isLocked} // Loop only when locked to create the background effect
-                                muted={isLocked} // Mute when locked (blurred background loop)
+                                loop={isLocked}
+                                muted={isLocked}
                                 playsInline
                             />
 

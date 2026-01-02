@@ -23,6 +23,23 @@
     -o-user-drag: none;
     user-drag: none;
   }
+
+  /* Video Protection - Prevent download */
+  video::-webkit-media-controls-download-button {
+    display: none !important;
+  }
+
+  video::-webkit-media-controls-enclosure {
+    overflow: hidden;
+  }
+
+  video::-internal-media-controls-download-button {
+    display: none !important;
+  }
+
+  video::-webkit-media-controls {
+    overflow: hidden !important;
+  }
 }
 
 /* ========================================
