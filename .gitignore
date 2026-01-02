@@ -20,3 +20,6 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# Firebase Admin credentials (NEVER commit this!)
+serviceAccountKey.json
