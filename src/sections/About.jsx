@@ -1,7 +1,27 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { getDownloadURL, ref } from 'firebase/storage'
+import { storage } from '../config/firebase'
+import STORAGE_PATHS from '../config/storage.config'
 
 export default function About() {
     const [showTapHint, setShowTapHint] = useState(true)
+    const [videoUrl, setVideoUrl] = useState('')
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        const loadVideo = async () => {
+            try {
+                const videoRef = ref(storage, `${STORAGE_PATHS.VIDEOS_PREVIEW}/about_cover.mp4`)
+                const url = await getDownloadURL(videoRef)
+                setVideoUrl(url)
+            } catch (error) {
+                console.error('Error loading preview video:', error)
+            } finally {
+                setLoading(false)
+            }
+        }
+        loadVideo()
+    }, [])
 
     return (
         <section id="about" className="section-padding bg-brand-dark relative overflow-hidden">
@@ -15,14 +35,21 @@ export default function About() {
                         className="aspect-[9/16] md:aspect-[3/4] bg-brand-gray relative flex items-center justify-center overflow-hidden border border-brand-purple group-hover:border-brand-purple/80 transition-colors duration-300"
                         onClick={() => setShowTapHint(false)}
                     >
-                        <video
-                            src="/videos/about_cover.mp4"
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                            className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700 grayscale group-hover:grayscale-0"
-                        />
+                        {!loading && videoUrl && (
+                            <video
+                                src={videoUrl}
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-700 grayscale group-hover:grayscale-0"
+                            />
+                        )}
+                        {loading && (
+                            <div className="absolute inset-0 flex items-center justify-center bg-brand-gray">
+                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-purple"></div>
+                            </div>
+                        )}
                         <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all duration-500 pointer-events-none"></div>
 
                         {/* Tap hint for mobile - subtle animation */}

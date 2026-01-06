@@ -23,3 +23,15 @@ npm-debug.log*
 
 # Firebase Admin credentials (NEVER commit this!)
 serviceAccountKey.json
+camila-8d151-firebase-adminsdk-fbsvc-4087e5f675.json
+
+# Local media files (stored in Firebase Storage instead)
+# Fotos locales
+FOTOS PREMIUM/
+Free/
+public/photos/
+
+# Videos locales
+Videos premium preview michelle/
+Free Videos/
+public/videos/
