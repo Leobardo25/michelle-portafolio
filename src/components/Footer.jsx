@@ -7,12 +7,12 @@ export default function Footer() {
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                     {/* Logo */}
                     <div className="font-display text-2xl font-bold gradient-text">
-                        Camila
+                        Michelle
                     </div>
 
                     {/* Copyright */}
                     <p className="text-gray-500 text-sm">
-                        © {currentYear} Camila. Todos los derechos reservados.
+                        © {currentYear} Michelle. Todos los derechos reservados.
                     </p>
                 </div>
 

@@ -9,6 +9,7 @@ const packages = [
                 Un videito completo de 9 min<br />
                 Tocándome mi panochita rosadita hasta que me veas
                 regarme todita (squirt💦).<br />
+                me escucharas gemir en mi delicioso acento colombiano<br />
                 ¿Podrás aguantar hasta el final? 🔥<br />
                 Sin censura + Número de WhatsApp privado.
             </>
@@ -29,17 +30,18 @@ const packages = [
         oldPrice: '₡8,000',
         description: (
             <>
-                Amor este paquete tiene:<br />
-                30 fotos muy explícitas y muy ricas<br />
-                30 videos cortos donde me veras hacer de todo😈<br />
+                Corazon este paquete tiene:<br />
+                30 fotos muy explícitas y muy ricas y de alta calidad<br />
+                1 video de 9 min sin censura donde me veras hacer de todo😈<br />
                 (estilo TikTok).
             </>
         ),
         features: [
-            '30 Fotos Explícitas',
-            '30 Videos Cortos',
-            'Estilo TikTok',
-            'Contenido Casero',
+            'Fotos Explícitas de alta calidad',
+            'Video 9 min Sin Censura muy explicito',
+            'Número WhatsApp Personal',
+            'Chat Ilimitado',
+            'Experiencia muy Intensa',
         ],
         message: 'Quiero comprar el paquete básico \u2764\uFE0F',
         highlight: false,
@@ -52,15 +54,16 @@ const packages = [
         description: (
             <>
                 Bebe experiencia completa:<br />
-                Video MUY explícito donde me mastubo mi panochita y el ano hasta regarme me veras en mi punto mas vulnerable🔥<br />
-                + 30 Fotos<br />
-                + 30 Videos
+                Dos video MUY explícito donde me mastubo en uno mi panochita y 
+                en otro el ano hasta regarme me veras en mi punto mas vulnerable🔥<br />
+                + 30 foticos<br />
+                Y un video a eleccion de la seccion de los videos PREMIUM
             </>
         ),
         features: [
             'Video MUY Explícito (ANAL)',
+            'Video MUY Explícito (Vaginal)',
             '30 Fotos Exclusivas',
-            '30 Videos Caseros',
             'Acceso a citas personales 💕',
             'Acceso Total',
         ],
@@ -70,7 +73,7 @@ const packages = [
 ]
 
 export default function Packages() {
-    const phoneNumber = "50660288198"
+    const phoneNumber = "50660539901"
 
     const handleBuy = (message) => {
         const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
@@ -83,7 +86,7 @@ export default function Packages() {
                 {/* Header Subtle */}
                 <div className="text-center mb-20">
                     <h2 className="font-display text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-                        MIS <span className="text-brand-red">PAQUETES</span>
+                        MIS <span className="text-brand-purple">PAQUETES</span>
                     </h2>
                     <p className="text-brand-muted uppercase tracking-widest text-sm">
                         Únete a mi círculo íntimo
@@ -101,7 +104,7 @@ export default function Packages() {
                                 }`}
                         >
                             {pkg.highlight && (
-                                <div className="absolute top-0 right-0 bg-brand-red text-white text-xs font-bold px-3 py-1 uppercase tracking-widest shadow-[0_0_15px_rgba(225,29,72,0.5)]">
+                                <div className="absolute top-0 right-0 bg-brand-purple text-white text-xs font-bold px-3 py-1 uppercase tracking-widest shadow-[0_0_15px_rgba(147,51,234,0.5)]">
                                     Mejor Valor
                                 </div>
                             )}
@@ -110,10 +113,10 @@ export default function Packages() {
 
                             {/* Pricing with Discount */}
                             <div className="flex items-baseline mb-6 gap-3">
-                                <span className={`text-4xl font-display font-bold ${pkg.highlight ? 'text-brand-red' : 'text-white'}`}>
+                                <span className={`text-4xl font-display font-bold ${pkg.highlight ? 'text-brand-purple' : 'text-white'}`}>
                                     {pkg.price}
                                 </span>
-                                <span className="text-brand-muted text-lg line-through decoration-brand-red decoration-2">
+                                <span className="text-brand-muted text-lg line-through decoration-brand-purple decoration-2">
                                     {pkg.oldPrice}
                                 </span>
                             </div>
@@ -125,7 +128,7 @@ export default function Packages() {
                             <ul className="space-y-4 mb-10 flex-1">
                                 {pkg.features.map((feature, i) => (
                                     <li key={i} className="flex items-center gap-3 text-sm text-brand-silver">
-                                        <span className="text-brand-red font-bold">✓</span> {feature}
+                                        <span className="text-brand-purple font-bold">✓</span> {feature}
                                     </li>
                                 ))}
                             </ul>
@@ -133,8 +136,8 @@ export default function Packages() {
                             <button
                                 onClick={() => handleBuy(pkg.message)}
                                 className={`w-full py-4 text-sm font-bold uppercase tracking-widest transition-all ${pkg.highlight
-                                    ? 'bg-brand-red text-white hover:bg-white hover:text-brand-dark shadow-[0_0_20px_rgba(225,29,72,0.3)] hover:shadow-[0_0_30px_rgba(225,29,72,0.6)]'
-                                    : 'border border-white/20 text-white hover:border-brand-red hover:text-brand-red hover:bg-brand-red/5'
+                                    ? 'bg-brand-purple text-white hover:bg-white hover:text-brand-dark shadow-[0_0_20px_rgba(147,51,234,0.3)] hover:shadow-[0_0_30px_rgba(147,51,234,0.6)]'
+                                    : 'border border-white/20 text-white hover:border-brand-purple hover:text-brand-purple hover:bg-brand-purple/5'
                                     }`}
                             >
                                 COMPRAR PAQUETE

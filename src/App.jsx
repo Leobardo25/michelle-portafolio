@@ -23,7 +23,7 @@ function App() {
     }, [])
 
     const handleAuthenticate = () => {
-        sessionStorage.setItem('camila_auth', 'true')
+        sessionStorage.setItem('michelle_auth', 'true')
         setIsAuthenticated(true)
     }
 
@@ -54,7 +54,7 @@ function App() {
     if (isLoading) {
         return (
             <div className="min-h-screen bg-brand-dark flex items-center justify-center">
-                <div className="text-brand-red text-2xl loading-pulse font-display font-bold">CARGANDO...</div>
+                <div className="text-brand-purple text-2xl loading-pulse font-display font-bold">CARGANDO...</div>
             </div>
         )
     }

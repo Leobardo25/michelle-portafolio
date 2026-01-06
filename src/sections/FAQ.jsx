@@ -24,6 +24,13 @@ const faqs = [
     {
         question: "¿De dónde eres?",
         answer: "Soy de Costa Rica . Estoy dispuesta a atenderte y hacerte pasar un momento inolvidable."
+    },
+    {
+        question: "¿Eres amiga de Camila?",
+        answer: "Sí, Camila es mi amiga muy especial.",
+        hasButton: true,
+        buttonText: "Visitar página de Camila",
+        buttonUrl: "https://camila2026.netlify.app/"
     }
 ]
 
@@ -34,7 +41,7 @@ export default function FAQ() {
         <section className="py-20 bg-brand-dark px-6 border-t border-white/5">
             <div className="max-w-3xl mx-auto">
                 <h2 className="text-3xl md:text-4xl font-display font-bold text-center text-white mb-12">
-                    PREGUNTAS <span className="text-brand-red">FRECUENTES</span>
+                    PREGUNTAS <span className="text-brand-purple">FRECUENTES</span>
                 </h2>
 
                 <div className="space-y-4">
@@ -45,14 +52,26 @@ export default function FAQ() {
                                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                             >
                                 <span className="font-bold text-brand-silver">{faq.question}</span>
-                                <span className={`text-brand-red font-bold text-xl transition-transform duration-300 ${openIndex === index ? 'rotate-45' : ''}`}>
+                                <span className={`text-brand-purple font-bold text-xl transition-transform duration-300 ${openIndex === index ? 'rotate-45' : ''}`}>
                                     +
                                 </span>
                             </button>
-                            <div className={`transition-all duration-300 ease-in-out overflow-hidden ${openIndex === index ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                <p className="px-6 pb-6 text-brand-muted text-sm leading-relaxed border-t border-white/5 pt-4">
-                                    {faq.answer}
-                                </p>
+                            <div className={`transition-all duration-300 ease-in-out overflow-hidden ${openIndex === index ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                <div className="px-6 pb-6 border-t border-white/5 pt-4">
+                                    <p className="text-brand-muted text-sm leading-relaxed">
+                                        {faq.answer}
+                                    </p>
+                                    {faq.hasButton && (
+                                        <a
+                                            href={faq.buttonUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-block mt-4 px-6 py-2 bg-brand-purple text-white text-xs font-bold rounded hover:bg-white hover:text-brand-purple transition-colors"
+                                        >
+                                            {faq.buttonText}
+                                        </a>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     ))}

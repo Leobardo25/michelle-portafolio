@@ -38,13 +38,13 @@ export default function Navbar() {
                 <div className="max-w-7xl mx-auto px-6 md:px-12">
                     <div className="flex items-center justify-between">
                         {/* Logo */}
-                        <a href="#hero" onClick={(e) => handleClick(e, '#hero')} className="font-display text-2xl font-bold tracking-tighter flex items-center gap-1 group">
-                            <span className="animate-text-wave">CAMILA</span>
-                            <span className="relative inline-flex items-center justify-center w-8 h-8 ml-1">
-                                <span className="absolute animate-heartbeat text-xl">💕</span>
-                                <span className="floating-heart text-[10px]" style={{ animationDelay: '0s', left: '20%' }}>❤️</span>
-                                <span className="floating-heart text-[8px]" style={{ animationDelay: '0.5s', left: '80%' }}>💕</span>
-                                <span className="floating-heart text-[12px]" style={{ animationDelay: '1.2s', left: '50%' }}>💖</span>
+                        <a href="#hero" onClick={(e) => handleClick(e, '#hero')} className="font-display text-2xl font-bold tracking-tighter flex items-center gap-0.5 group">
+                            <span className="animate-text-wave">MICHELLE</span>
+                            <span className="relative inline-flex items-center justify-center w-8 h-8">
+                                <span className="absolute animate-fire text-xl">🔥</span>
+                                <span className="floating-fire text-[10px]" style={{ animationDelay: '0s', left: '20%' }}>🔥</span>
+                                <span className="floating-fire text-[8px]" style={{ animationDelay: '0.5s', left: '80%' }}>🔥</span>
+                                <span className="floating-fire text-[12px]" style={{ animationDelay: '1.2s', left: '50%' }}>🔥</span>
                             </span>
                         </a>
 
@@ -100,7 +100,7 @@ export default function Navbar() {
                             key={link.name}
                             href={link.href}
                             onClick={(e) => handleClick(e, link.href)}
-                            className="block text-2xl font-bold uppercase tracking-widest text-white hover:text-brand-red transition-colors duration-300"
+                            className="block text-2xl font-bold uppercase tracking-widest text-white hover:text-brand-purple transition-colors duration-300"
                         >
                             {link.name}
                         </a>

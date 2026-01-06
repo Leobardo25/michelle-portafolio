@@ -7,9 +7,9 @@ export default {
     theme: {
         extend: {
             colors: {
-                // Paleta Midnight Rouge
+                // Paleta Midnight Purple
                 brand: {
-                    red: '#E11D48', // Primary Action (Rose 600)
+                    purple: '#9333EA', // Primary Action (Purple 600)
                     dark: '#000000', // Pure Black
                     darker: '#0a0a0a', // Rich Black (Cards)
                     gray: '#18181b', // Zinc 900 (Secondary BG)
@@ -23,7 +23,7 @@ export default {
             },
             animation: {
                 'fade-in': 'fadeIn 0.8s ease-out',
-                'pulse-slow': 'pulseRed 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                'pulse-slow': 'pulsePurple 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                 'spotlight': 'spotlight 2s ease-out forwards',
                 'bounce-slow': 'bounce 3s infinite',
             },
@@ -32,9 +32,9 @@ export default {
                     '0%': { opacity: '0', transform: 'translateY(10px)' },
                     '100%': { opacity: '1', transform: 'translateY(0)' },
                 },
-                pulseRed: {
-                    '0%, 100%': { opacity: '1', boxShadow: '0 0 0px rgba(225, 29, 72, 0)' },
-                    '50%': { opacity: '0.9', boxShadow: '0 0 20px rgba(225, 29, 72, 0.3)' },
+                pulsePurple: {
+                    '0%, 100%': { opacity: '1', boxShadow: '0 0 0px rgba(147, 51, 234, 0)' },
+                    '50%': { opacity: '0.9', boxShadow: '0 0 20px rgba(147, 51, 234, 0.3)' },
                 },
                 spotlight: {
                     '0%': { opacity: '0', transform: 'scale(0.95)' },
@@ -45,8 +45,8 @@ export default {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
             },
             boxShadow: {
-                'glow-red': '0 0 30px -5px rgba(225, 29, 72, 0.4)',
-                'glow-red-lg': '0 0 50px -10px rgba(225, 29, 72, 0.6)',
+                'glow-purple': '0 0 30px -5px rgba(147, 51, 234, 0.4)',
+                'glow-purple-lg': '0 0 50px -10px rgba(147, 51, 234, 0.6)',
             }
         },
     },

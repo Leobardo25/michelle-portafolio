@@ -1,4 +1,4 @@
-// Firebase configuration for Camilla Landing Page
+// Firebase configuration for Michelle Landing Page
 const firebaseConfig = {
     apiKey: "AIzaSyCDlY8QoJ5dhTqgdPutWkshcRiPD8gg3Zw",
     authDomain: "camila-8d151.firebaseapp.com",

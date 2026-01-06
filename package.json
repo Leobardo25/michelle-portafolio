@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "delete-file": "node scripts/deleteFirebaseFile.js",
-    "delete-file-admin": "node scripts/deleteFirebaseFileAdmin.js"
+    "delete-file-admin": "node scripts/deleteFirebaseFileAdmin.js",
+    "migrate-storage": "node scripts/migrateToCreatorFolders.js"
   },
   "dependencies": {
     "firebase": "^12.7.0",

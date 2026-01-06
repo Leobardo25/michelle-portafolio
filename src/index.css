@@ -43,9 +43,9 @@
 }
 
 /* ========================================
-   THEME: MIDNIGHT ROUGE (+18 PREMIUM)
+   THEME: MIDNIGHT PURPLE (+18 PREMIUM)
    - Background: Pure Black (#000000)
-   - Accent: Crimson Red (#E11D48)
+   - Accent: Purple (#9333EA)
    - Text: Silver/White (#E2E8F0)
 ======================================== */
 
@@ -76,10 +76,10 @@ body {
   background: radial-gradient(circle at top center, rgba(30, 30, 30, 0.8) 0%, rgba(0, 0, 0, 1) 70%);
 }
 
-/* Red Neon Text */
-.text-neon-red {
-  color: #E11D48;
-  text-shadow: 0 0 10px rgba(225, 29, 72, 0.5);
+/* Purple Neon Text */
+.text-neon-purple {
+  color: #9333EA;
+  text-shadow: 0 0 10px rgba(147, 51, 234, 0.5);
 }
 
 /* Premium Card */
@@ -92,7 +92,7 @@ body {
 }
 
 .card-premium:hover {
-  border-color: rgba(225, 29, 72, 0.4);
+  border-color: rgba(147, 51, 234, 0.4);
   transform: translateY(-2px);
   box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.8);
 }
@@ -100,14 +100,14 @@ body {
 /* Active/Diamond Card */
 .card-diamond {
   background: rgba(10, 10, 10, 0.9);
-  border: 1px solid rgba(225, 29, 72, 0.5);
-  box-shadow: 0 0 30px -10px rgba(225, 29, 72, 0.2);
+  border: 1px solid rgba(147, 51, 234, 0.5);
+  box-shadow: 0 0 30px -10px rgba(147, 51, 234, 0.2);
 }
 
-/* Red Border Glow */
+/* Purple Border Glow */
 .border-glow {
-  border: 1px solid #E11D48;
-  box-shadow: 0 0 15px rgba(225, 29, 72, 0.2);
+  border: 1px solid #9333EA;
+  box-shadow: 0 0 15px rgba(147, 51, 234, 0.2);
 }
 
 /* ========================================
@@ -115,16 +115,16 @@ body {
 ======================================== */
 .btn-primary {
   @apply px-10 py-4 text-white font-bold tracking-wider uppercase text-sm transition-all duration-300;
-  background-color: #E11D48;
+  background-color: #9333EA;
   border-radius: 2px;
   /* Sharp edges for raw feel */
-  box-shadow: 0 0 20px rgba(225, 29, 72, 0.3);
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
 }
 
 .btn-primary:hover {
-  background-color: #be123c;
-  /* Rose 700 */
-  box-shadow: 0 0 30px rgba(225, 29, 72, 0.6);
+  background-color: #7E22CE;
+  /* Purple 700 */
+  box-shadow: 0 0 30px rgba(147, 51, 234, 0.6);
   transform: scale(1.02);
 }
 
@@ -136,9 +136,9 @@ body {
 }
 
 .btn-outline:hover {
-  border-color: #E11D48;
-  color: #E11D48;
-  background: rgba(225, 29, 72, 0.05);
+  border-color: #9333EA;
+  color: #9333EA;
+  background: rgba(147, 51, 234, 0.05);
 }
 
 /* ========================================
@@ -158,7 +158,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #E11D48;
+  background: #9333EA;
 }
 
 /* ========================================
@@ -176,27 +176,27 @@ body {
 }
 
 /* ========================================
-   ANIMATIONS: HEARTBEAT & FLOAT
+   ANIMATIONS: FIRE & FLOAT
 ======================================== */
-@keyframes heartPulse {
-  0% {
-    transform: scale(1);
+@keyframes firePulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1);
   }
 
-  14% {
-    transform: scale(1.3);
+  25% {
+    transform: scale(1.15) rotate(-5deg);
+    filter: brightness(1.3);
   }
 
-  28% {
-    transform: scale(1);
+  50% {
+    transform: scale(1.05) rotate(5deg);
+    filter: brightness(1.1);
   }
 
-  42% {
-    transform: scale(1.3);
-  }
-
-  70% {
-    transform: scale(1);
+  75% {
+    transform: scale(1.2) rotate(-3deg);
+    filter: brightness(1.4);
   }
 }
 
@@ -216,10 +216,10 @@ body {
   }
 }
 
-.animate-heartbeat {
-  animation: heartPulse 1.5s infinite ease-in-out;
+.animate-fire {
+  animation: firePulse 1.2s infinite ease-in-out;
   display: inline-block;
-  color: #E11D48;
+  filter: hue-rotate(260deg) saturate(2) brightness(1.1) contrast(1.2);
 }
 
 /* Gentle Pulse for WhatsApp */
@@ -232,7 +232,7 @@ body {
 
   50% {
     transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(225, 29, 72, 0.6);
+    box-shadow: 0 0 15px rgba(147, 51, 234, 0.6);
   }
 }
 
@@ -240,7 +240,7 @@ body {
   animation: gentlePulse 3s infinite ease-in-out;
 }
 
-.floating-heart {
+.floating-fire {
   position: absolute;
   top: 0;
   left: 50%;
@@ -248,7 +248,7 @@ body {
   opacity: 0;
   pointer-events: none;
   animation: floatAndFade 2s infinite ease-out;
-  color: #E11D48;
+  filter: hue-rotate(260deg) saturate(2.5) brightness(1.5) contrast(1.5);
 }
 
 /* Sexy Text Wave (Slow) */
@@ -266,8 +266,8 @@ body {
   background: linear-gradient(to right,
       #ffffff 30%,
       /* White Base */
-      #E11D48 50%,
-      /* Brand Pink/Red Wave */
+      #9333EA 50%,
+      /* Brand Purple Wave */
       #ffffff 70%
       /* White Base */
     );

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getGalleryImages } from '../services/firebaseStorage'
+import { STORAGE_PATHS } from '../config/storage.config'
 
 export default function Gallery() {
     const [freeItems, setFreeItems] = useState([])
@@ -13,9 +14,8 @@ export default function Gallery() {
     const premiumPhotosMetadata = [
         {
             id: 'p1',
-            url: '/photos/premium/p1.png',
             type: 'image',
-            title: 'Buenos Días Bebé ☀️',
+            title: 'Despertar Caliente 🔥',
             description: 'Empezando el día de la manera más rica... ¿Me das los buenos días? 🤭',
             price: 1000,
             originalPrice: 2000,
@@ -23,9 +23,8 @@ export default function Gallery() {
         },
         {
             id: 'p2',
-            url: '/photos/premium/p2.png',
             type: 'image',
-            title: 'Volví Mis Amores 🫦',
+            title: 'Tentación Prohibida 😈',
             description: 'Los extrañé tanto... aquí les traigo un regalito de regreso. 🫣',
             price: 1000,
             originalPrice: 2000,
@@ -33,9 +32,8 @@ export default function Gallery() {
         },
         {
             id: 'p3',
-            url: '/photos/premium/p3.png',
             type: 'image',
-            title: 'Vamos a Jugar 🎮',
+            title: 'Juegos Traviesos 💋',
             description: 'Tengo un juego nuevo y quiero que seas mi jugador 1. 🔥',
             price: 1000,
             originalPrice: 2000,
@@ -43,9 +41,8 @@ export default function Gallery() {
         },
         {
             id: 'p4',
-            url: '/photos/premium/p4.png',
             type: 'image',
-            title: 'Lo Prometido... 👅',
+            title: 'Pura Lujuria 👅',
             description: 'Cumpliendo mis deudas de la manera más deliciosa. 💦',
             price: 1000,
             originalPrice: 2000,
@@ -53,9 +50,8 @@ export default function Gallery() {
         },
         {
             id: 'p5',
-            url: '/photos/premium/p5.png',
             type: 'image',
-            title: 'Chat Privado 💬',
+            title: 'Secretos Íntimos 💬',
             description: 'Un adelanto de lo que pasa cuando me escribes al privado... 😈',
             price: 1000,
             originalPrice: 2000,
@@ -63,9 +59,8 @@ export default function Gallery() {
         },
         {
             id: 'p6',
-            url: '/photos/premium/p6.png',
             type: 'image',
-            title: '¿Qué Haces Amor? 👀',
+            title: 'Tocándome Por Ti 🔥',
             description: 'Yo aquí pensando en ti... y tocándome un poquito. 🙈',
             price: 1000,
             originalPrice: 2000,
@@ -73,9 +68,8 @@ export default function Gallery() {
         },
         {
             id: 'p7',
-            url: '/photos/premium/p7.png',
             type: 'image',
-            title: 'Pensando en Ti ❤️',
+            title: 'Solo Para Tus Ojos 😏',
             description: 'Esta pose es solo para tus ojos. ¿Te gusta? ✨',
             price: 1000,
             originalPrice: 2000,
@@ -83,9 +77,8 @@ export default function Gallery() {
         },
         {
             id: 'p8',
-            url: '/photos/premium/p8.png',
             type: 'image',
-            title: 'Quiero Hacerlo Ahorita 🫶🏼',
+            title: 'Deseo Incontrolable 💦',
             description: 'No aguanto más las ganas... necesito sentirte ya. 🔥',
             price: 1000,
             originalPrice: 2000,
@@ -93,9 +86,8 @@ export default function Gallery() {
         },
         {
             id: 'p9',
-            url: '/photos/premium/p9.png',
             type: 'image',
-            title: 'Toda Para Ti 😋',
+            title: 'Sabor Prohibido 🤤',
             description: 'Quiero que me la chupes toda... no dejes ni una gota. 🤤',
             price: 1000,
             originalPrice: 2000,
@@ -103,15 +95,14 @@ export default function Gallery() {
         },
         {
             id: 'p10',
-            url: '/photos/premium/p10.png',
             type: 'image',
-            title: 'Tu Reina Regresó 👑',
+            title: 'Fuego Colombiano 🔥',
             description: 'Y volví más caliente que nunca. ¿Estás listo? 💕',
             price: 1000,
             originalPrice: 2000,
             isExclusive: true
         }
-    ]
+    ];
 
     const handleLoadMore = () => {
         setVisibleItems(prev => prev + 20)
@@ -123,11 +114,11 @@ export default function Gallery() {
                 setLoading(true)
                 
                 // Load free images from Firebase
-                const freeImages = await getGalleryImages('gallery')
+                const freeImages = await getGalleryImages(STORAGE_PATHS.GALLERY)
                 setFreeItems(freeImages.map(img => ({ ...img, isExclusive: false })))
                 
                 // Load premium photos from Firebase Storage
-                const premiumPhotos = await getGalleryImages('fotos-premium')
+                const premiumPhotos = await getGalleryImages(STORAGE_PATHS.PHOTOS_PREMIUM)
                 
                 // Merge Firebase URLs with metadata
                 const premiumWithMetadata = premiumPhotosMetadata.map(meta => {
@@ -196,8 +187,8 @@ export default function Gallery() {
 
     const handleBuy = (e, item) => {
         e?.stopPropagation()
-        const message = `Hola Camila, quiero comprar la foto "${item.title}" por ₡${item.price}. ¿Cómo pago?`
-        const url = `https://wa.me/50660288198?text=${encodeURIComponent(message)}`
+        const message = `Hola Michelle, quiero comprar la foto "${item.title}" por ₡${item.price}. ¿Cómo pago?`
+        const url = `https://wa.me/50660539901?text=${encodeURIComponent(message)}`
         window.open(url, '_blank')
     }
 
@@ -209,9 +200,9 @@ export default function Gallery() {
             <div className="max-w-7xl mx-auto relative z-10">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <span className="text-brand-red font-medium">Galería</span>
+                    <span className="text-brand-purple font-medium">Galería</span>
                     <h2 className="font-display text-4xl md:text-5xl font-bold mt-2 mb-4 text-white">
-                        Mi <span className="text-brand-red">Contenido</span>
+                        Mi <span className="text-brand-purple">Contenido</span>
                     </h2>
                     <p className="text-gray-400 max-w-2xl mx-auto">
                         Explora mi contenido gratuito o mira la sección premium para comprar fotos exclusivas sin censura.
@@ -223,7 +214,7 @@ export default function Gallery() {
                     <button
                         onClick={() => setActiveTab('free')}
                         className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${activeTab === 'free'
-                            ? 'bg-gradient-to-r from-brand-red to-brand-red/50 text-white shadow-lg shadow-brand-red/30'
+                            ? 'bg-gradient-to-r from-brand-purple to-brand-purple/50 text-white shadow-lg shadow-brand-purple/30'
                             : 'glass text-gray-300 hover:text-white'
                             }`}
                     >
@@ -233,11 +224,11 @@ export default function Gallery() {
                     <button
                         onClick={() => setActiveTab('premium')}
                         className={`group relative px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center gap-2 ${activeTab === 'premium'
-                            ? 'bg-gradient-to-r from-brand-red to-brand-red/50 text-white shadow-lg shadow-brand-red/30'
+                            ? 'bg-gradient-to-r from-brand-purple to-brand-purple/50 text-white shadow-lg shadow-brand-purple/30'
                             : 'glass text-gray-300 hover:text-white'
                             }`}
                     >
-                        <span className="absolute -top-4 -right-2 bg-brand-red text-white text-[10px] font-bold px-2 py-0.5 rounded-full animate-bounce shadow-glow-red z-10">
+                        <span className="absolute -top-4 -right-2 text-brand-purple text-xs font-black uppercase tracking-wider animate-pulse z-10 drop-shadow-[0_0_8px_rgba(147,51,234,0.8)]">
                             🔞 FOTOS VIP
                         </span>
                         <svg className="w-5 h-5 group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
@@ -248,7 +239,7 @@ export default function Gallery() {
                 {/* Loading state */}
                 {loading && (
                     <div className="flex justify-center items-center py-20">
-                        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-red"></div>
+                        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-purple"></div>
                     </div>
                 )}
 
@@ -341,7 +332,7 @@ export default function Gallery() {
                             {/* Premium Overlay Info - MOBILE OPTIMIZED */}
                             {selectedItem.isExclusive && (
                                 <div className="absolute inset-x-0 bottom-0 top-0 flex flex-col items-center justify-center z-[110] p-4 text-center">
-                                    <div className="glass px-6 py-8 rounded-3xl border border-brand-red/30 bg-black/80 max-w-sm w-full mx-auto relative overflow-hidden group">
+                                    <div className="glass px-6 py-8 rounded-3xl border border-brand-purple/30 bg-black/80 max-w-sm w-full mx-auto relative overflow-hidden group">
                                         {/* Shine effect */}
                                         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent skew-x-12 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-1000"></div>
 
@@ -349,7 +340,7 @@ export default function Gallery() {
                                         <p className="text-brand-silver text-sm mb-6">{selectedItem.description}</p>
 
                                         <div className="flex items-center justify-center gap-3 mb-6">
-                                            <span className="text-2xl font-bold text-brand-red">₡{selectedItem.price}</span>
+                                            <span className="text-2xl font-bold text-brand-purple">₡{selectedItem.price}</span>
                                             {selectedItem.originalPrice && (
                                                 <span className="text-sm text-gray-500 line-through">₡{selectedItem.originalPrice}</span>
                                             )}
@@ -398,7 +389,7 @@ function GalleryItem({ item, onClick, onBuy }) {
     return (
         <div
             ref={setRef}
-            className={`group flex flex-col bg-brand-darker rounded-xl overflow-hidden border border-white/5 hover:border-brand-red transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+            className={`group flex flex-col bg-brand-darker rounded-xl overflow-hidden border border-white/5 hover:border-brand-purple transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
             onClick={onClick}
         >
             {/* Image Container */}
@@ -421,37 +412,37 @@ function GalleryItem({ item, onClick, onBuy }) {
 
                 {/* Premium Badge */}
                 {item.isExclusive && (
-                    <div className="absolute top-2 right-2 bg-brand-red text-white text-[10px] font-bold px-2 py-1 rounded shadow-lg z-10">
+                    <div className="absolute top-2 right-2 bg-brand-purple text-white text-[10px] font-bold px-2 py-1 rounded shadow-lg z-10">
                         VIP
                     </div>
                 )}
             </div>
 
-            {/* Info Card (Grid Footer) */}
-            <div className="p-4 flex flex-col gap-2 bg-white/5">
-                <div className="flex justify-between items-start">
-                    <h3 className="font-bold text-white text-sm line-clamp-1">{item.title}</h3>
-                    {item.isExclusive && (
-                        <span className="text-brand-red font-bold text-sm">₡{item.isExclusive ? 1000 : item.price}</span>
+            {/* Info Card (Grid Footer) - Only for Premium */}
+            {item.isExclusive && (
+                <div className="p-4 flex flex-col gap-2 bg-white/5">
+                    <div className="flex justify-between items-start">
+                        <h3 className="font-bold text-white text-sm line-clamp-1">{item.title}</h3>
+                        <span className="text-brand-purple font-bold text-sm">₡{item.isExclusive ? 1000 : item.price}</span>
+                    </div>
+                    {item.description && (
+                        <p className="text-xs text-gray-400 line-clamp-2">{item.description}</p>
                     )}
-                </div>
-                {item.description && (
-                    <p className="text-xs text-gray-400 line-clamp-2">{item.description}</p>
-                )}
 
-                {item.isExclusive && (
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
                             onBuy(e, item)
                         }}
-                        className="mt-2 w-full py-2 bg-brand-red/10 border border-brand-red/50 text-brand-red text-xs font-bold rounded hover:bg-brand-red hover:text-white transition-colors flex items-center justify-center gap-1"
+                        className="mt-2 w-full py-2 bg-brand-purple/10 border border-brand-purple/50 text-brand-purple text-xs font-bold rounded hover:bg-brand-purple hover:text-white transition-colors flex items-center justify-center gap-1"
                     >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
                         <span>COMPRAR</span>
-                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
                     </button>
-                )}
-            </div>
+                </div>
+            )}
         </div>
     )
 }
