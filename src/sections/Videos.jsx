@@ -8,7 +8,7 @@ const premiumVideosMetadata = [
         id: 'BY-InstaHoes (Telegram) (10)_1',
         title: 'Momento Íntimo 🔥',
         description: 'Un video exclusivo donde me verás en mi versión más atrevida y sin censura.',
-        price: '₡3,000',
+        price: '₡4,000',
         whatsappMessage: 'Hola Michelle, quiero comprar el video "Momento Íntimo" 🔥',
         isExclusive: true
     },
@@ -16,7 +16,7 @@ const premiumVideosMetadata = [
         id: 'BY-InstaHoes (Telegram) (104)_1',
         title: 'Solo Para Ti 💋',
         description: 'Contenido exclusivo donde me dejo llevar completamente. No te lo pierdas.',
-        price: '₡3,500',
+        price: '₡4,000',
         whatsappMessage: 'Hola Michelle, quiero comprar el video "Solo Para Ti" 💋',
         isExclusive: true
     },
@@ -24,7 +24,7 @@ const premiumVideosMetadata = [
         id: 'BY-InstaHoes (Telegram) (13)_1',
         title: 'Sin Límites 😈',
         description: 'Video largo y explícito donde no dejo nada a la imaginación. Pura pasión.',
-        price: '₡5,000',
+        price: '₡6,000',
         whatsappMessage: 'Hola Michelle, quiero comprar el video "Sin Límites" 😈',
         isExclusive: true
     },
@@ -32,7 +32,7 @@ const premiumVideosMetadata = [
         id: 'BY-InstaHoes (Telegram) (15)_1',
         title: 'Placer Intenso 🔥',
         description: 'Un momento de puro placer donde me verás disfrutando al máximo.',
-        price: '₡5,000',
+        price: '₡6,000',
         whatsappMessage: 'Hola Michelle, quiero comprar el video "Placer Intenso" 🔥',
         isExclusive: true
     },
@@ -40,7 +40,7 @@ const premiumVideosMetadata = [
         id: 'BY-InstaHoes (Telegram) (24)_1',
         title: 'Pasión Desatada 💦',
         description: 'Video largo y caliente donde me dejo llevar completamente. Contenido explícito.',
-        price: '₡6,000',
+        price: '₡7,000',
         whatsappMessage: 'Hola Michelle, quiero comprar el video "Pasión Desatada" 💦',
         isExclusive: true
     },
@@ -48,7 +48,7 @@ const premiumVideosMetadata = [
         id: 'BY-InstaHoes (Telegram) (36)_1',
         title: 'Momento Caliente 🔥',
         description: 'Contenido exclusivo donde me verás en acción sin censura alguna.',
-        price: '₡5,000',
+        price: '₡6,000',
         whatsappMessage: 'Hola Michelle, quiero comprar el video "Momento Caliente" 🔥',
         isExclusive: true
     },
@@ -56,7 +56,7 @@ const premiumVideosMetadata = [
         id: 'BY-InstaHoes (Telegram) (4)_1',
         title: 'Pura Tentación 😏',
         description: 'Un video donde me verás en mi versión más traviesa y atrevida.',
-        price: '₡4,500',
+        price: '₡5,000',
         whatsappMessage: 'Hola Michelle, quiero comprar el video "Pura Tentación" 😏',
         isExclusive: true
     },
@@ -64,7 +64,7 @@ const premiumVideosMetadata = [
         id: 'BY-InstaHoes (Telegram) (47)_1',
         title: 'Quickie Caliente 💋',
         description: 'Video corto pero intenso. Perfecto para un momento rápido.',
-        price: '₡2,500',
+        price: '₡4,000',
         whatsappMessage: 'Hola Michelle, quiero comprar el video "Quickie Caliente" 💋',
         isExclusive: true
     },
@@ -72,7 +72,7 @@ const premiumVideosMetadata = [
         id: 'BY-InstaHoes (Telegram) (54)_1',
         title: 'Deseo Prohibido 🔥',
         description: 'Contenido explícito donde cumplo tus fantasías más secretas.',
-        price: '₡3,500',
+        price: '₡4,000',
         whatsappMessage: 'Hola Michelle, quiero comprar el video "Deseo Prohibido" 🔥',
         isExclusive: true
     },
@@ -80,7 +80,7 @@ const premiumVideosMetadata = [
         id: 'BY-InstaHoes (Telegram) (79)_1',
         title: 'Momento Especial 💦',
         description: 'Un video donde me verás disfrutando intensamente. Sin censura.',
-        price: '₡3,000',
+        price: '₡4,000',
         whatsappMessage: 'Hola Michelle, quiero comprar el video "Momento Especial" 💦',
         isExclusive: true
     },
@@ -88,7 +88,7 @@ const premiumVideosMetadata = [
         id: 'BY-InstaHoes (Telegram) (82)_1',
         title: 'Noche de Pasión 😈',
         description: 'Video largo y explícito de una noche inolvidable. Contenido premium.',
-        price: '₡6,000',
+        price: '₡7,000',
         whatsappMessage: 'Hola Michelle, quiero comprar el video "Noche de Pasión" 😈',
         isExclusive: true
     },
@@ -96,7 +96,7 @@ const premiumVideosMetadata = [
         id: 'BY-InstaHoes (Telegram) (83)_1',
         title: 'Placer Extremo 🔥',
         description: 'Uno de mis videos más calientes. Verás todo sin límites.',
-        price: '₡5,500',
+        price: '₡6,000',
         whatsappMessage: 'Hola Michelle, quiero comprar el video "Placer Extremo" 🔥',
         isExclusive: true
     },
@@ -104,7 +104,7 @@ const premiumVideosMetadata = [
         id: 'BY-InstaHoes (Telegram) (85)_1',
         title: 'Momento Íntimo 2 💋',
         description: 'Video corto pero intenso donde me verás en acción.',
-        price: '₡2,500',
+        price: '₡4,000',
         whatsappMessage: 'Hola Michelle, quiero comprar el video "Momento Íntimo 2" 💋',
         isExclusive: true
     },
@@ -120,7 +120,7 @@ const premiumVideosMetadata = [
         id: 'BY-InstaHoes (Telegram) (86)_1',
         title: 'Pura Lujuria 😈',
         description: 'Video explícito donde verás mi lado más pervertido.',
-        price: '₡4,500',
+        price: '₡5,000',
         whatsappMessage: 'Hola Michelle, quiero comprar el video "Pura Lujuria" 😈',
         isExclusive: true
     },
@@ -136,7 +136,7 @@ const premiumVideosMetadata = [
         id: 'BY-InstaHoes (Telegram) (98)_1',
         title: 'Momento Travieso 🔥',
         description: 'Contenido exclusivo donde me verás en mi versión más atrevida.',
-        price: '₡3,500',
+        price: '₡4,000',
         whatsappMessage: 'Hola Michelle, quiero comprar el video "Momento Travieso" 🔥',
         isExclusive: true
     },
