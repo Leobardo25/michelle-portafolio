@@ -73,7 +73,7 @@ const packages = [
 ]
 
 export default function Packages() {
-    const phoneNumber = "50660539901"
+    const phoneNumber = "50660813117"
 
     const handleBuy = (message) => {
         const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`

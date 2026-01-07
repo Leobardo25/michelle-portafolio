@@ -188,7 +188,7 @@ export default function Gallery() {
     const handleBuy = (e, item) => {
         e?.stopPropagation()
         const message = `Hola Michelle, quiero comprar la foto "${item.title}" por ₡${item.price}. ¿Cómo pago?`
-        const url = `https://wa.me/50660539901?text=${encodeURIComponent(message)}`
+        const url = `https://wa.me/50660813117?text=${encodeURIComponent(message)}`
         window.open(url, '_blank')
     }
 

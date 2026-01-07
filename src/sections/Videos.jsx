@@ -262,7 +262,7 @@ export default function Videos() {
     }
 
     const handleBuy = () => {
-        const phone = "50660539901"
+        const phone = "50660813117"
         const message = selectedVideo?.whatsappMessage || "Hola, quiero comprar un video ❤️"
         const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
         window.open(url, '_blank')

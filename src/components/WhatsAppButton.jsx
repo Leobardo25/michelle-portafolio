@@ -40,7 +40,7 @@ export default function WhatsAppButton() {
     }, [showTooltip, hasShownTooltip])
 
     const handleOpenChat = () => {
-        const phoneNumber = "50660539901"
+        const phoneNumber = "50660813117"
         const message = "Hola quiero comprar de tu contenido "
         const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
         window.open(url, '_blank')
